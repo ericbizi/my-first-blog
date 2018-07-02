@@ -1,32 +1,6 @@
-<!DOCTYPE html>
+{% extends 'blog/base.html' %}
 
-{% load staticfiles %}
-
-
-<html>
-    <head>
-
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-
-    	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    	<!-- Good fonts https://fonts.google.com/ -->
-
-    	<link rel="stylesheet" href="{% static '/css/blog.css' %}">
-
-<div class="page-header">
-        <title>Django Girls blog</title>
- <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-    </head>
-    <body>
-        
-           
-        
-    
-      <div class="content container">
-    <div class="row">
-        <div class="col-md-8">
+{% block content %}
             {% for post in posts %}
                 <div class="post">
                     
@@ -37,10 +11,5 @@
                     <p>{{ post.text|linebreaksbr }}</p>
                 </div>
             {% endfor %}
-        </div>
-    </div>
-</div>
 
-     
-    </body>
-</html>
+      {% endblock %}
