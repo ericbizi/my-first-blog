@@ -14,6 +14,7 @@ def post_detail(request,pk):
 	post=get_object_or_404(Post,pk=pk)
 	return render (request, 'blog/post_detail.html', {'post':post})
 
+# Post a blog
 
 def post_new(request):
 	if request.method== "POST":
@@ -21,7 +22,7 @@ def post_new(request):
 		if form.is_valid():
 			post=form.save(commit=False)
 			post.author=request.user
-			post.published_date=timezone.now()
+			
 			post.save()
 			return redirect('post_detail', pk=post.pk)
 
@@ -38,10 +39,31 @@ def post_edit(request,pk):
 		if form.is_valid():
 			post=form.save(commit=False)
 			post.author=request.user
-			post.published_date=timezone.now()
+			
 			post.save()
 			return redirect('post_detail', pk=post.pk)
 
 	else:
 		form=PostForm(instance=post)
 		return render(request,'blog/post_edit.html',{'form': form})
+
+# View posts in draft mode
+
+def post_draft_list(request):
+	posts=Post.objects.filter(published_date__isnull=True).order_by('created_date')
+	return render (request,'blog/post_draft_list.html', {'posts': posts})
+
+# Publish a post
+
+def post_publish(request,pk):
+	post=get_object_or_404(Post,pk=pk)
+	post.publish()
+
+	return redirect ('post_detail', pk=pk)
+
+# Delete post
+
+def post_remove(request,pk):
+	post=get_object_or_404(Post,pk=pk)
+	post.delete()
+	return redirect ('post_list')
