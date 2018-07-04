@@ -2,6 +2,7 @@
 
 {% block content %}
             {% for post in posts %}
+
                 <div class="post">
                     
                     <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
@@ -18,9 +19,10 @@ And how about pk=post.pk? pk is short for primary key, which is a unique name fo
                     <p>
                     <em><a href="{% url 'post_detail' pk=post.pk %}">Continue reading</a></em> 
                 </p>
-
+               <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
 
                 </div>
+
             {% endfor %}
 
       {% endblock %}

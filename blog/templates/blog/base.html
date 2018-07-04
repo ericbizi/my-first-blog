@@ -9,8 +9,8 @@
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 
-    	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    	<!-- Good fonts https://fonts.google.com/ -->
+    	<link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+       
 
     	<link rel="stylesheet" href="{% static '/css/blog.css' %}">
     </head>
@@ -24,6 +24,12 @@
     <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 
     <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+
+    <p class="top-menu" >Hello {{ user.username }} <small>(<a href="{% url 'logout' %}"style="color: red">Log out</a>)</small></p>
+
+
+    {% else %}
+     <a href="{% url 'login' %}" class="top-menu">Login <span class="glyphicon glyphicon-lock"></span></a>
 
     {% endif %}
     
