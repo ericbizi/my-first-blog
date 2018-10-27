@@ -1,1 +1,32 @@
 
+<!DOCTYPE html>
+<html ng-app="angjs">
+
+<head>
+  <meta charset="utf-8" />
+  <script>
+    document.write('<base href="' + document.location + '" />');
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <script data-require="angular.js@1.5.x" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.11/angular.min.js" data-semver="1.5.11"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainController">
+
+  <form name="searchUser" ng-submit="search(username)">
+    <input name="search" required type="text" placeholder="Type username" ng-model="username">
+    <input type="submit" name="send" value="Search">
+  </form>
+  <br>
+  <div>{{ error }}</div>
+ <p>{{ countdown }}</p> 
+  
+  <div ng-include="'userdetails.html'" ng-show="user">
+
+
+  </div>
+
+</body>
+
+</html>
